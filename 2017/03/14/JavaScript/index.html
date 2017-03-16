@@ -87,12 +87,28 @@
 
 
 
-<meta property="og:type" content="website">
+<meta name="description" content="Javascript的this用法
+this是Javascript语言的一个关键字。它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，　　function test(){
+　　　　this.x = 1;
+　　}
+随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是this指的是，调用函数的那个对象。下面分四种情况，详细讨论this的用法。情况一：纯粹的函数">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://zhoujianfish.github.io/index.html">
+<meta property="og:url" content="https://zhoujianfish.github.io/2017/03/14/JavaScript/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Javascript的this用法
+this是Javascript语言的一个关键字。它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，　　function test(){
+　　　　this.x = 1;
+　　}
+随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是this指的是，调用函数的那个对象。下面分四种情况，详细讨论this的用法。情况一：纯粹的函数">
+<meta property="og:updated_time" content="2017-03-16T10:49:41.019Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="Javascript的this用法
+this是Javascript语言的一个关键字。它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，　　function test(){
+　　　　this.x = 1;
+　　}
+随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是this指的是，调用函数的那个对象。下面分四种情况，详细讨论this的用法。情况一：纯粹的函数">
 
 
 
@@ -120,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="https://zhoujianfish.github.io/"/>
+  <link rel="canonical" href="https://zhoujianfish.github.io/2017/03/14/JavaScript/"/>
 
 
 
 
 
-  <title> Hexo </title>
+  <title>  | Hexo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -151,9 +167,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -236,176 +250,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://zhoujianfish.github.io/2017/03/16/test1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/16/test1/" itemprop="url">
-                  Unbenannt
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-16T18:46:06+08:00">
-                2017-03-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<h2 id="Javascript的this用法"><a href="#Javascript的this用法" class="headerlink" title="#Javascript的this用法"></a>#Javascript的this用法</h2><h3 id="this是Javascript语言的一个关键字。"><a href="#this是Javascript语言的一个关键字。" class="headerlink" title="this是Javascript语言的一个关键字。"></a>this是Javascript语言的一个关键字。</h3><h3 id="它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，"><a href="#它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，" class="headerlink" title="它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，"></a>它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，</h3><pre><code>　　function test(){
-　　　　this.x = 1;
-　　}
-</code></pre><h3 id="随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是this指的是，调用函数的那个对象。"><a href="#随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是this指的是，调用函数的那个对象。" class="headerlink" title="随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是this指的是，调用函数的那个对象。"></a>随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是this指的是，调用函数的那个对象。</h3><h3 id="下面分四种情况，详细讨论this的用法。"><a href="#下面分四种情况，详细讨论this的用法。" class="headerlink" title="下面分四种情况，详细讨论this的用法。"></a>下面分四种情况，详细讨论this的用法。</h3><h2 id="情况一：纯粹的函数调用"><a href="#情况一：纯粹的函数调用" class="headerlink" title="情况一：纯粹的函数调用"></a>情况一：纯粹的函数调用</h2><h3 id="这是函数的最通常用法，属于全局性调用，因此this就代表全局对象Global。"><a href="#这是函数的最通常用法，属于全局性调用，因此this就代表全局对象Global。" class="headerlink" title="这是函数的最通常用法，属于全局性调用，因此this就代表全局对象Global。"></a>这是函数的最通常用法，属于全局性调用，因此this就代表全局对象Global。</h3><h3 id="请看下面这段代码，它的运行结果是1"><a href="#请看下面这段代码，它的运行结果是1" class="headerlink" title="请看下面这段代码，它的运行结果是1"></a>请看下面这段代码，它的运行结果是1</h3><pre><code>　　function test(){
-　　　　this.x = 1;
-　　　　alert(this.x);
-　　}
-　　test(); // 1
-</code></pre><h3 id="为了证明this就是全局对象，我对代码做一些改变："><a href="#为了证明this就是全局对象，我对代码做一些改变：" class="headerlink" title="为了证明this就是全局对象，我对代码做一些改变："></a>为了证明this就是全局对象，我对代码做一些改变：</h3><pre><code> 　　var x = 1;
-　　function test(){
-　　　　alert(this.x);
-　　}
-　　test(); // 1   　　
-</code></pre><h3 id="运行结果还是1。再变一下："><a href="#运行结果还是1。再变一下：" class="headerlink" title="运行结果还是1。再变一下："></a>运行结果还是1。再变一下：</h3><pre><code>　var x = 1;
-　　function test(){
-　　　　this.x = 0;
-　　}
-　　test();
-　　alert(x); //0
-</code></pre><h2 id="情况二：作为对象方法的调用"><a href="#情况二：作为对象方法的调用" class="headerlink" title="情况二：作为对象方法的调用"></a>情况二：作为对象方法的调用</h2><h3 id="函数还可以作为某个对象的方法调用，这时this就指这个上级对象。"><a href="#函数还可以作为某个对象的方法调用，这时this就指这个上级对象。" class="headerlink" title="函数还可以作为某个对象的方法调用，这时this就指这个上级对象。"></a>函数还可以作为某个对象的方法调用，这时this就指这个上级对象。</h3><pre><code>　　function test(){
-　　　　alert(this.x);
-　　}
-　　var o = {};
-　　o.x = 1;
-　　o.m = test;
-　　o.m(); // 1
-</code></pre><h2 id="情况三-作为构造函数调用"><a href="#情况三-作为构造函数调用" class="headerlink" title="情况三 作为构造函数调用"></a>情况三 作为构造函数调用</h2><h3 id="所谓构造函数，就是通过这个函数生成一个新对象（object）。这时，this就指这个新对象。"><a href="#所谓构造函数，就是通过这个函数生成一个新对象（object）。这时，this就指这个新对象。" class="headerlink" title="所谓构造函数，就是通过这个函数生成一个新对象（object）。这时，this就指这个新对象。"></a>所谓构造函数，就是通过这个函数生成一个新对象（object）。这时，this就指这个新对象。</h3><pre><code>function test(){
-　　　　this.x = 1;
-　　}
-　　var o = new test();
-　　alert(o.x); // 1
-</code></pre><h3 id="运行结果为1。为了表明这时this不是全局对象，我对代码做一些改变："><a href="#运行结果为1。为了表明这时this不是全局对象，我对代码做一些改变：" class="headerlink" title="运行结果为1。为了表明这时this不是全局对象，我对代码做一些改变："></a>运行结果为1。为了表明这时this不是全局对象，我对代码做一些改变：</h3><pre><code>var x = 2;
-　　function test(){
-　　　　this.x = 1;
-　　}
-　　var o = new test();
-　　alert(x); //2
-</code></pre><h3 id="运行结果为2，表明全局变量x的值根本没变。"><a href="#运行结果为2，表明全局变量x的值根本没变。" class="headerlink" title="运行结果为2，表明全局变量x的值根本没变。"></a>运行结果为2，表明全局变量x的值根本没变。</h3><h2 id="情况四-apply调用"><a href="#情况四-apply调用" class="headerlink" title="情况四 apply调用"></a>情况四 apply调用</h2><h3 id="apply-是函数对象的一个方法，它的作用是改变函数的调用对象，它的第一个参数就表示改变后的调用这个函数的对象。因此，this指的就是这第一个参数。"><a href="#apply-是函数对象的一个方法，它的作用是改变函数的调用对象，它的第一个参数就表示改变后的调用这个函数的对象。因此，this指的就是这第一个参数。" class="headerlink" title="apply()是函数对象的一个方法，它的作用是改变函数的调用对象，它的第一个参数就表示改变后的调用这个函数的对象。因此，this指的就是这第一个参数。"></a>apply()是函数对象的一个方法，它的作用是改变函数的调用对象，它的第一个参数就表示改变后的调用这个函数的对象。因此，this指的就是这第一个参数。</h3><pre><code>var x = 0;
-　　function test(){
-　　　　alert(this.x);
-　　}
-　　var o={};
-　　o.x = 1;
-　　o.m = test;
-　　o.m.apply(); //0
-</code></pre><h3 id="apply-的参数为空时，默认调用全局对象。因此，这时的运行结果为0，证明this指的是全局对象。"><a href="#apply-的参数为空时，默认调用全局对象。因此，这时的运行结果为0，证明this指的是全局对象。" class="headerlink" title="apply()的参数为空时，默认调用全局对象。因此，这时的运行结果为0，证明this指的是全局对象。"></a>apply()的参数为空时，默认调用全局对象。因此，这时的运行结果为0，证明this指的是全局对象。</h3><h3 id="如果把最后一行代码修改为"><a href="#如果把最后一行代码修改为" class="headerlink" title="如果把最后一行代码修改为"></a>如果把最后一行代码修改为</h3><pre><code>　　o.m.apply(o); //1
-</code></pre><h3 id="运行结果就变成了1，证明了这时this代表的是对象o。"><a href="#运行结果就变成了1，证明了这时this代表的是对象o。" class="headerlink" title="运行结果就变成了1，证明了这时this代表的是对象o。"></a>运行结果就变成了1，证明了这时this代表的是对象o。</h3>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
 
   
 
@@ -436,9 +283,6 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/14/JavaScript/" itemprop="url">
-                  Unbenannt
-                </a>
               
             
           </h1>
@@ -489,9 +333,7 @@
       
 
       
-        
-          
-            <hr>
+        <hr>
 <h1 id="Javascript的this用法"><a href="#Javascript的this用法" class="headerlink" title="Javascript的this用法"></a>Javascript的this用法</h1><hr>
 <h3 id="this是Javascript语言的一个关键字。"><a href="#this是Javascript语言的一个关键字。" class="headerlink" title="this是Javascript语言的一个关键字。"></a>this是Javascript语言的一个关键字。</h3><h3 id="它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，"><a href="#它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，" class="headerlink" title="它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，"></a>它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，</h3><pre><code>　　function test(){
 　　　　this.x = 1;
@@ -540,20 +382,27 @@
 　　o.m.apply(); //0
 </code></pre><h3 id="apply-的参数为空时，默认调用全局对象。因此，这时的运行结果为0，证明this指的是全局对象。"><a href="#apply-的参数为空时，默认调用全局对象。因此，这时的运行结果为0，证明this指的是全局对象。" class="headerlink" title="apply()的参数为空时，默认调用全局对象。因此，这时的运行结果为0，证明this指的是全局对象。"></a>apply()的参数为空时，默认调用全局对象。因此，这时的运行结果为0，证明this指的是全局对象。</h3><h3 id="如果把最后一行代码修改为"><a href="#如果把最后一行代码修改为" class="headerlink" title="如果把最后一行代码修改为"></a>如果把最后一行代码修改为</h3><pre><code>　　o.m.apply(o); //1
 </code></pre><h3 id="运行结果就变成了1，证明了这时this代表的是对象o。"><a href="#运行结果就变成了1，证明了这时this代表的是对象o。" class="headerlink" title="运行结果就变成了1，证明了这时this代表的是对象o。"></a>运行结果就变成了1，证明了这时this代表的是对象o。</h3>
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
@@ -561,150 +410,42 @@
       
 
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://zhoujianfish.github.io/2017/03/14/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
         
-        
-          <h1 class="post-title" itemprop="name headline">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/03/14/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2017/03/14/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+              <a href="/2017/03/16/test1/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-14T23:02:15+08:00">
-                2017-03-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
           
           </div>
@@ -712,6 +453,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -731,8 +476,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -776,6 +530,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Javascript的this用法"><span class="nav-number">1.</span> <span class="nav-text">Javascript的this用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#this是Javascript语言的一个关键字。"><span class="nav-number">1.0.1.</span> <span class="nav-text">this是Javascript语言的一个关键字。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，"><span class="nav-number">1.0.2.</span> <span class="nav-text">它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是this指的是，调用函数的那个对象。"><span class="nav-number">1.0.3.</span> <span class="nav-text">随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是this指的是，调用函数的那个对象。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下面分四种情况，详细讨论this的用法。"><span class="nav-number">1.0.4.</span> <span class="nav-text">下面分四种情况，详细讨论this的用法。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#情况一：纯粹的函数调用"><span class="nav-number">1.1.</span> <span class="nav-text">情况一：纯粹的函数调用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#这是函数的最通常用法，属于全局性调用，因此this就代表全局对象Global。"><span class="nav-number">1.1.1.</span> <span class="nav-text">这是函数的最通常用法，属于全局性调用，因此this就代表全局对象Global。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请看下面这段代码，它的运行结果是1"><span class="nav-number">1.1.2.</span> <span class="nav-text">请看下面这段代码，它的运行结果是1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为了证明this就是全局对象，我对代码做一些改变："><span class="nav-number">1.1.3.</span> <span class="nav-text">为了证明this就是全局对象，我对代码做一些改变：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行结果还是1。再变一下："><span class="nav-number">1.1.4.</span> <span class="nav-text">运行结果还是1。再变一下：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#情况二：作为对象方法的调用"><span class="nav-number">1.2.</span> <span class="nav-text">情况二：作为对象方法的调用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数还可以作为某个对象的方法调用，这时this就指这个上级对象。"><span class="nav-number">1.2.1.</span> <span class="nav-text">函数还可以作为某个对象的方法调用，这时this就指这个上级对象。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#情况三-作为构造函数调用"><span class="nav-number">1.3.</span> <span class="nav-text">情况三 作为构造函数调用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#所谓构造函数，就是通过这个函数生成一个新对象（object）。这时，this就指这个新对象。"><span class="nav-number">1.3.1.</span> <span class="nav-text">所谓构造函数，就是通过这个函数生成一个新对象（object）。这时，this就指这个新对象。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行结果为1。为了表明这时this不是全局对象，我对代码做一些改变："><span class="nav-number">1.3.2.</span> <span class="nav-text">运行结果为1。为了表明这时this不是全局对象，我对代码做一些改变：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行结果为2，表明全局变量x的值根本没变。"><span class="nav-number">1.3.3.</span> <span class="nav-text">运行结果为2，表明全局变量x的值根本没变。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#情况四-apply调用"><span class="nav-number">1.4.</span> <span class="nav-text">情况四 apply调用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#apply-是函数对象的一个方法，它的作用是改变函数的调用对象，它的第一个参数就表示改变后的调用这个函数的对象。因此，this指的就是这第一个参数。"><span class="nav-number">1.4.1.</span> <span class="nav-text">apply()是函数对象的一个方法，它的作用是改变函数的调用对象，它的第一个参数就表示改变后的调用这个函数的对象。因此，this指的就是这第一个参数。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#apply-的参数为空时，默认调用全局对象。因此，这时的运行结果为0，证明this指的是全局对象。"><span class="nav-number">1.4.2.</span> <span class="nav-text">apply()的参数为空时，默认调用全局对象。因此，这时的运行结果为0，证明this指的是全局对象。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果把最后一行代码修改为"><span class="nav-number">1.4.3.</span> <span class="nav-text">如果把最后一行代码修改为</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行结果就变成了1，证明了这时this代表的是对象o。"><span class="nav-number">1.4.4.</span> <span class="nav-text">运行结果就变成了1，证明了这时this代表的是对象o。</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -888,6 +658,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
