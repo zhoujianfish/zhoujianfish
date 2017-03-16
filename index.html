@@ -194,7 +194,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -204,7 +204,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -270,7 +270,7 @@
               
                 
                 <a class="post-title-link" href="/2017/03/14/test1/" itemprop="url">
-                  Hello World
+                  Unbenannt
                 </a>
               
             
@@ -284,7 +284,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-14T23:31:24+08:00">
                 2017-03-14
@@ -324,15 +324,33 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+            <hr>
+<pre><code>Javascript的this用法
+</code></pre><hr>
+<p>###this是Javascript语言的一个关键字。</p>
+<p>###它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，</p>
+<pre><code>　　function test(){
+　　　　this.x = 1;
+　　}
+</code></pre><p>###随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是this指的是，调用函数的那个对象。</p>
+<p>###下面分四种情况，详细讨论this的用法。</p>
+<p>##情况一：纯粹的函数调用</p>
+<p>###这是函数的最通常用法，属于全局性调用，因此this就代表全局对象Global。</p>
+<p>###请看下面这段代码，它的运行结果是1<br>    　　function test(){<br>    　　　　this.x = 1;<br>    　　　　alert(this.x);<br>    　　}<br>    　　test(); // 1</p>
+<p>###为了证明this就是全局对象，我对代码做一些改变：<br>     　　var x = 1;<br>    　　function test(){<br>    　　　　alert(this.x);<br>    　　}<br>    　　test(); // 1   　　</p>
+<p>###运行结果还是1。再变一下：<br>    　var x = 1;<br>    　　function test(){<br>    　　　　this.x = 0;<br>    　　}<br>    　　test();<br>    　　alert(x); //0</p>
+<p>##情况二：作为对象方法的调用</p>
+<p>###函数还可以作为某个对象的方法调用，这时this就指这个上级对象。<br>    　　function test(){<br>    　　　　alert(this.x);<br>    　　}<br>    　　var o = {};<br>    　　o.x = 1;<br>    　　o.m = test;<br>    　　o.m(); // 1</p>
+<p>##情况三 作为构造函数调用</p>
+<p>###所谓构造函数，就是通过这个函数生成一个新对象（object）。这时，this就指这个新对象。<br>    function test(){<br>    　　　　this.x = 1;<br>    　　}<br>    　　var o = new test();<br>    　　alert(o.x); // 1</p>
+<p>###运行结果为1。为了表明这时this不是全局对象，我对代码做一些改变：<br>    var x = 2;<br>    　　function test(){<br>    　　　　this.x = 1;<br>    　　}<br>    　　var o = new test();<br>    　　alert(x); //2</p>
+<p>###运行结果为2，表明全局变量x的值根本没变。</p>
+<p>##情况四 apply调用</p>
+<p>###apply()是函数对象的一个方法，它的作用是改变函数的调用对象，它的第一个参数就表示改变后的调用这个函数的对象。因此，this指的就是这第一个参数。<br>    var x = 0;<br>    　　function test(){<br>    　　　　alert(this.x);<br>    　　}<br>    　　var o={};<br>    　　o.x = 1;<br>    　　o.m = test;<br>    　　o.m.apply(); //0</p>
+<p>###apply()的参数为空时，默认调用全局对象。因此，这时的运行结果为0，证明this指的是全局对象。</p>
+<p>###如果把最后一行代码修改为</p>
+<pre><code>　　o.m.apply(o); //1
+</code></pre><p>###运行结果就变成了1，证明了这时this代表的是对象o。</p>
 
           
         
@@ -413,7 +431,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-14T23:02:15+08:00">
                 2017-03-14
@@ -542,7 +560,7 @@
             <div class="site-state-item site-state-posts">
               <a href="/archives">
                 <span class="site-state-item-count">2</span>
-                <span class="site-state-item-name">posts</span>
+                <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
           
@@ -596,7 +614,7 @@
 
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
