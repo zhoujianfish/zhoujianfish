@@ -149,6 +149,174 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-jQuery" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/19/jQuery/">jQuery</a>
+    </h1>
+  
+
+        
+        <a href="/2017/05/19/jQuery/" class="archive-article-date">
+  	<time datetime="2017-05-19T15:56:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>jQuery框架原理</p>
+<p>( function (window, undefined) {</p>
+<pre><code>window.jQuery = window.$ = jQuery
+</code></pre><p>}(window);</p>
+<pre><code>1.通过观察,发现jQuery是一个闭包
+2.为什么使用jQuery
+    2.1 防止和其他框架发生冲突
+3.闭包变量函数外界是不能访问的,那么jQuery是如何让外界可以访问闭包中的变量?    
+    3.1将内部的变量/函数绑定给window
+4.jQuery的闭包为什么要给自己传递一个window参数?
+     4.1 为了方便压缩代码;
+     4.2 为了提升查找的效率;
+5. 为什么闭包的形参要接收一个undefined?
+    5.1 为了方便压缩代码
+    5.2 在IE9以下的浏览器中的undefined的值都是可以修改的,所以为了保证jQuery中的undefined都是未被修改的;
+
+6. 系统内部将一个jQuery变量赋值给了window.$
+
+注意:
+通过new Dog创建对象
+Dog在函数中如果返回的是基本数据类型,那么最终拿到的还是Dog对象
+如果在Dog函数中如果返回的是对象类型,那么最终拿到的就是返回的那个对象类型;
+function Dog(){
+            // 通过new Dow()创建对象
+            // 在Dog函数中如果返回的是基本数据类型, 那么最终拿到的还是Dog对象
+            // 如果在Dog函数中如果返回的是对象类型, 那么最终拿到的就是返回的那个对象类型
+            return new  Dog.prototype.init();
+        }
+        Dog.prototype = {
+            constructor: Dog,
+            init: function(){
+                this.name = &apos;td&apos;;
+                this.age = 35;
+            },
+            say: function(){
+                console.log(&apos;say &apos;+this.name+&apos; &apos;+this.age);
+            }
+        }
+        Dog.prototype.init.prototype = Dog.prototype;
+
+        var d = new Dog();
+        // 找不到say方法, 因为say方法是定义在Dog.prototype中的
+        // 而d对象是通过init函数创建出来的, 只会去init.prototype中查找, 所以找不到
+        // 解决方案就是将init.prototype和Dog.prototype变为同一个prototype
+
+    接收的参数
+
+1.传入&apos;&apos; null undefined NaN 0 false
+返回一个空对象   this
+2. 传入选择器
+ 返回一个jQuery实例,将查找到的元素作为 的jQuery实例中
+3. html片段
+返回一个jQuery实例,创建代码片段对应的一级元素,作为返回一个jQuery实例中
+4.数组
+返回一个jQuery实例,会将数组中的每一个元素依次,作为返回一个jQuery实例中
+5.伪数组
+5.1 什么是伪数组?
+伪数组是一个长得像数组的对象
+    伪数组必须满足两个条件
+    第一个条件:必须有length属性
+    第二个条件:必须有length-1 的那个属性
+    var obj= {0:&apos;name&apos;,1:&apos;age&apos;, length:2}
+返回一个jQuery实例,会将伪数组中的每一个元素依次,作为返回一个jQuery实例中
+6.对象
+返回一个jQuery实例,直接把对象当做一个属性存储在jQuery实例中
+7.DOM
+返回一个jQuery实例,直接把DOM对象当做一个属性存储在jQuery实例中
+8.基本数据类型
+返回一个jQuery实例,会直接把基本数据类型当做一个属性存储在jQuery实例中 除了(&apos;&apos; null  undefined NaN 0 false )
+
+apply和call方法的作用: 都可以修改函数中的this
+
+         apply和call方法的都可以给函数传参
+         apply格式:
+         apply(对象, [参数列表]);
+         call格式:
+         call(对象, 参数1, 参数2, ...);
+         应用场景:
+         apple适用于参数个数不确定的情况
+         call适用于参数个数确定情况
+
+  1.伪数组转真数组
+        /*
+         1.谁调用方法, 那么方法内部的this就是谁
+         2.[].push并不是调用push方法, 而是找到数组的push方法
+         类似于 window.test
+         3.push.apply(arr), 修改push内部的this为指定的对象
+         可以理解为就是利用指定对象调用push方法
+         4.push.apply(arr, obj), 将伪数组obj传递给了push方法
+         apply方法内部会自动取出伪数组的每一项传递个push方法
+         可以理解为依次将伪数组中的元素push到了指定的对象中
+         */
+        /*
+        var obj = {0:&apos;name&apos;, 1:&apos;age&apos;, length: 2};
+        var arr = [];
+        [].push.apply(arr, obj);
+        console.log(arr);
+        */
+
+        //        2.真数组转伪数组
+        var arr = [&apos;nj&apos;, &apos;16&apos;, &apos;man&apos;];
+        var obj = {};
+        [].push.apply(obj, arr);
+        console.log(obj);
+</code></pre><p>window的length是用于统计当前界面上 iframe 个数,但是 </p>
+<p>如果是利用apply对伪数组进行处理在IE8中会有问题</p>
+<p>如果是利用apply对帧数组进行处理在IE8中没有问题</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">jQuery</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/19/jQuery/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-Javascript定时器中的this指向" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -590,6 +758,10 @@ foreach ($dict as $item) {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">sd</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">jQuery</a>
               </li>
             
             <div class="clearfix"></div>
