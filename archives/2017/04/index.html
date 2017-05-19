@@ -6,11 +6,11 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://zhoujianfish.github.io">
-  <title>Hexo</title>
+  <title>Archives: 2017/4 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://zhoujianfish.github.io/index.html">
+<meta property="og:url" content="https://zhoujianfish.github.io/archives/2017/04/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
@@ -149,300 +149,47 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Javascript定时器中的this指向" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/11/Javascript定时器中的this指向/">Javascript定时器中的this指向</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/11/Javascript定时器中的this指向/" class="archive-article-date">
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/04/11/Javascript定时器中的this指向/" class="archive-article-date">
   	<time datetime="2017-04-11T06:06:34.597Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-11</time>
 </a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="使用js中的定时器（setInterval，setTimeout），很容易会遇到this指向的问题。"><a href="#使用js中的定时器（setInterval，setTimeout），很容易会遇到this指向的问题。" class="headerlink" title="使用js中的定时器（setInterval，setTimeout），很容易会遇到this指向的问题。"></a>使用js中的定时器（setInterval，setTimeout），很容易会遇到this指向的问题。</h3><h3 id="直接上例子："><a href="#直接上例子：" class="headerlink" title="直接上例子："></a>直接上例子：</h3><pre><code>var name = &apos;my name is window&apos;;
-var obj = {
-    name: &apos;my name is obj&apos;,
-    fn: function () {
-        var timer = null;
-        clearInterval(timer);
-        timer = setInterval(function () {
-            console.log(this.name);  //my name is window
-        }, 1000)
-    }
-}
-在这里，从this.name可以看出this的指向是window。
-</code></pre><h3 id="如果没有特殊指向，setInterval和setTimeout的回调函数中this的指向都是window。这是因为JS的定时器方法是定义在window下的。但是平时很多场景下，都需要修改this的指向。这里总结了几种："><a href="#如果没有特殊指向，setInterval和setTimeout的回调函数中this的指向都是window。这是因为JS的定时器方法是定义在window下的。但是平时很多场景下，都需要修改this的指向。这里总结了几种：" class="headerlink" title="如果没有特殊指向，setInterval和setTimeout的回调函数中this的指向都是window。这是因为JS的定时器方法是定义在window下的。但是平时很多场景下，都需要修改this的指向。这里总结了几种："></a>如果没有特殊指向，setInterval和setTimeout的回调函数中this的指向都是window。这是因为JS的定时器方法是定义在window下的。但是平时很多场景下，都需要修改this的指向。这里总结了几种：</h3><h3 id="1、最常用的方法：在外部函数中将this存为一个变量，回调函数中使用该变量，而不是直接使用this。"><a href="#1、最常用的方法：在外部函数中将this存为一个变量，回调函数中使用该变量，而不是直接使用this。" class="headerlink" title="1、最常用的方法：在外部函数中将this存为一个变量，回调函数中使用该变量，而不是直接使用this。"></a>1、最常用的方法：在外部函数中将this存为一个变量，回调函数中使用该变量，而不是直接使用this。</h3><pre><code>   var name = &apos;my name is window&apos;;
-    var obj = {
-    name: &apos;my name is obj&apos;,
-    fn: function () {
-        var that = this;
-        var timer = null;
-        clearInterval(timer);
-        timer = setInterval(function () {
-            console.log(that.name);   //my name is obj
-        }, 1000)
-    }
-}
-
-在fn中加了var that = this; 回调函数中使用that代替this即可。这种方法最常见，使用也最广泛。
-</code></pre><h3 id="2、使用bind-方法（bind-为ES5的标准，低版本IE下有兼容问题，可以引入es5-shim-js解决）"><a href="#2、使用bind-方法（bind-为ES5的标准，低版本IE下有兼容问题，可以引入es5-shim-js解决）" class="headerlink" title="2、使用bind()方法（bind()为ES5的标准，低版本IE下有兼容问题，可以引入es5-shim.js解决）"></a>2、使用bind()方法（bind()为ES5的标准，低版本IE下有兼容问题，可以引入es5-shim.js解决）</h3><h3 id="bind-的作用类似call和apply，都是修改this指向。但是call和apply是修改this指向后函数会立即执行，而bind则是返回一个新的函数，它会创建一个与原来函数主体相同的新函数，新函数中的this指向传入的对象。"><a href="#bind-的作用类似call和apply，都是修改this指向。但是call和apply是修改this指向后函数会立即执行，而bind则是返回一个新的函数，它会创建一个与原来函数主体相同的新函数，新函数中的this指向传入的对象。" class="headerlink" title="bind()的作用类似call和apply，都是修改this指向。但是call和apply是修改this指向后函数会立即执行，而bind则是返回一个新的函数，它会创建一个与原来函数主体相同的新函数，新函数中的this指向传入的对象。"></a>bind()的作用类似call和apply，都是修改this指向。但是call和apply是修改this指向后函数会立即执行，而bind则是返回一个新的函数，它会创建一个与原来函数主体相同的新函数，新函数中的this指向传入的对象。</h3><pre><code> var name = &apos;my name is window&apos;;
-  var obj = {
-      name: &apos;my name is obj&apos;,
-      fn: function () {
-          var timer = null;
-          clearInterval(timer);
-          timer = setInterval(function () {
-              console.log(this.name);   //my name is obj
-          }.bind(this), 1000)
-     }
- }
-
-在这里为什么不能用call和apply，是因为call和apply不是返回函数，而是立即执行函数，那么，就失去了定时器的作用。
-</code></pre><h3 id="3、使用es6的箭头函数：箭头函数的最大作用就是this指向。"><a href="#3、使用es6的箭头函数：箭头函数的最大作用就是this指向。" class="headerlink" title="3、使用es6的箭头函数：箭头函数的最大作用就是this指向。"></a>3、使用es6的箭头函数：箭头函数的最大作用就是this指向。</h3><pre><code>var name = &apos;my name is window&apos;;
-    var obj = {
-      name: &apos;my name is obj&apos;,
-        fn: function () {
-         var timer = null;
-         clearInterval(timer);
-          timer = setInterval(() =&gt; {
-              console.log(this.name);  //my name is obj
-          }, 1000)
-     }
- }
-</code></pre><h3 id="箭头函数没有自己的this，它的this继承自外部函数的作用域。所以，在该例中，定时器回调函数中的this，是继承了fn的this。当然箭头函数也有兼容问题，要是兼容低版本ie，需要使用babel编译，并且引入es5-shim-js才可以。"><a href="#箭头函数没有自己的this，它的this继承自外部函数的作用域。所以，在该例中，定时器回调函数中的this，是继承了fn的this。当然箭头函数也有兼容问题，要是兼容低版本ie，需要使用babel编译，并且引入es5-shim-js才可以。" class="headerlink" title="箭头函数没有自己的this，它的this继承自外部函数的作用域。所以，在该例中，定时器回调函数中的this，是继承了fn的this。当然箭头函数也有兼容问题，要是兼容低版本ie，需要使用babel编译，并且引入es5-shim.js才可以。"></a>箭头函数没有自己的this，它的this继承自外部函数的作用域。所以，在该例中，定时器回调函数中的this，是继承了fn的this。当然箭头函数也有兼容问题，要是兼容低版本ie，需要使用babel编译，并且引入es5-shim.js才可以。</h3>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/11/Javascript定时器中的this指向/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-js基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>####一.数组的认识</p>
-<ul>
-<li>数组的定义:用来存储表示一堆变量的集合</li>
-<li>数组的特点:1.数组是有序号的,从0开始 2.数组中的存储的变量类型可以是不同的类型</li>
-<li>数组访问;数组可以通过数组名称[序号值]来访问,例如: arr[1]访问数组中的第二个元素</li>
-<li>数组的长度的获取.数组名称.length</li>
-<li>数组的循环,通过for循环,形式是:for(var i = 0;i &lt; 数组的长度; i ++){执行代码}</li>
-<li>数组的基本应用;设置不同的行现实不同的颜色,设置全选不选以及反选；实现九宫格算法</li>
-<li>拍他思想的认识:1.先设置所有的为一种属性2.然后设置自己的独立属性,覆盖原来的</li>
-<li>this的认识:this一般在事件指令中,表示谁被触发了,就表示谁</li>
-<li>拍他思想的应用,以及设置不同颜色的方法的认识</li>
-<li>变量和属性以及方法和函数的区别:属性需要隶属于某一个对象,变量不需要,函数属于某一个对象就是方法</li>
-<li>属性的扩展：可以给某个一个对象扩展属性，用来记录销毁中的值</li>
-<li>tab栏切换</li>
-<li>tab栏切换抽取</li>
-<li>数组的基本方法:1-push(),在数组的后面添加一个元素返回数组的长度;2-pop():从数组的后面删除一个元素返回删除的元素;3-shift(),从数组的前面删除一个元素 ,4-unshift(),从数组的前面添加一个元素,5-contact连接两个元素,原来的数组不会发生改变,6.sort();数组转化成字符后排序,但是如果要按照数值排序,需要使用函数参数,函数参数会自动执行7.数组转化字符：join（）8.字符转化数组 ：split（）</li>
-</ul>
-<p>####二.字符串的常用方法的认识</p>
-<ul>
-<li>转化成字符方法的认识 1.使用连接符号+ 2.使用String方法</li>
-<li>获取某一位置的字符以及unicode编码的认识: charCodeAt()；获取某一个位置的字符：charat();</li>
-<li>获取某一个字符的位置的方法的认识,indexof(),如果从后往前后去：lastindexof(),注意排序还是从左到右</li>
-<li>获取一个字符的真正的占字节的方法的获取:一般如果是汉字那么他的unicode编码就是大于127,在0和127内是普通的字母数字。</li>
-<li>转化大小写：转化大写：toUpperCase;转化小写：toLowerCase<h3 id="获取某一个字符串的位置"><a href="#获取某一个字符串的位置" class="headerlink" title="获取某一个字符串的位置"></a>获取某一个字符串的位置</h3><pre><code>{% codeblock lang:JavaScript %}
-			var charString = 'my is abc dcf a';
-			var poiont = charString.indexOf('n');
-    			console.log(poiont); // -1;
-		{% endcodeblock %}
-</code></pre></li>
-<li><p>indexOf:会获取传入的字符的位置,位置从左到右边,如果获取到第一个元素后,就会返回第一个获取元素的位置,如果没有对应的元素就会返回 -1;</p>
-<pre><code>{% codeblock lang:JavaScript %}
-			var charString = 'my is abc dcf a';
-			var newPoint = charString.lastIndexOf('a');
-    			console.log(newPoint);
-		{% endcodeblock %}
-</code></pre></li>
-<li>lastIndexOf:从后往前找对应的元素,如果找到就会把对应的位置返回,但是注意位置排序还是从左到右顺序数;</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/20/js基础/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Ajax" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h1><h3 id="注意点"><a href="#注意点" class="headerlink" title="注意点:"></a>注意点:</h3><pre><code>PHP是服务端开发语言,所以不能直接运行,需要在服务骑上运行
-如何在服务器上运行:
-将编写好的代码文件夹放到服务器对应的文件夹下
-然后通过浏览器访问服务器对应的文件
-然后通过浏览器选择需要执行的那个php文件
-</code></pre><h3 id="PHP中也有数组"><a href="#PHP中也有数组" class="headerlink" title="PHP中也有数组"></a>PHP中也有数组</h3><pre><code>$arr = array(1,3,5);
-    echo $arr[1];
-    print_r($arr);
-</code></pre><h3 id="JS中有数组和字典"><a href="#JS中有数组和字典" class="headerlink" title="JS中有数组和字典"></a>JS中有数组和字典</h3><pre><code>var arr = [1, 3, 5];
-var dict = {&quot;name&quot;:&quot;nj&quot;, &quot;age&quot;:&quot;18&quot;}
-</code></pre><h3 id="PHP中也有数组和字典"><a href="#PHP中也有数组和字典" class="headerlink" title="PHP中也有数组和字典"></a>PHP中也有数组和字典</h3><pre><code>$arr = array(1, 3, 5);
-$dict = array(&quot;name&quot;=&gt;&quot;nj&quot;, &quot;age&quot;=&gt;&quot;18&quot;);
-</code></pre><h3 id="在PHP中要输出数组-字典需要使用print-r"><a href="#在PHP中要输出数组-字典需要使用print-r" class="headerlink" title="在PHP中要输出数组/字典需要使用print_r"></a>在PHP中要输出数组/字典需要使用print_r</h3><p>###遍历<br>    $arr = array(1, 3, 5, 7, 9);<br>    for($i = 0; $i &lt; count($arr); $i++){<br>        echo $arr[$i];<br>        echo “<br>“;<br>    }</p>
-<pre><code>$arr = array(1, 3, 5, 7, 9);
-$index = 0;
-while ($index &lt; count($arr)){
-    echo $arr[$index];
-    echo &quot;&lt;br&gt;&quot;;
-    $index++;
-}
-
-$arr = array(1, 3, 5, 7, 9);
-$dict = array(&quot;name&quot;=&gt;&quot;nj&quot;, &quot;age&quot;=&gt;&quot;18&quot;);
-foreach ($dict as $item) {
-    echo $item;
-    echo &quot;&lt;br&gt;&quot;;
-}
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/18/Ajax/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-JavaScript" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+        </div>
+    	 
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/14/JavaScript/">Javascript的this用法</a>
+      <a class="archive-article-title" href="/2017/04/11/Javascript定时器中的this指向/">Javascript定时器中的this指向</a>
     </h1>
   
 
-        
-        <a href="/2017/03/14/JavaScript/" class="archive-article-date">
-  	<time datetime="2017-03-14T15:31:24.565Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="this是Javascript语言的一个关键字。"><a href="#this是Javascript语言的一个关键字。" class="headerlink" title="this是Javascript语言的一个关键字。"></a>this是Javascript语言的一个关键字。</h3><h3 id="它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，"><a href="#它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，" class="headerlink" title="它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，"></a>它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.x = <span class="number">1</span></div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<h3 id="随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是this指的是，调用函数的那个对象。"><a href="#随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是this指的是，调用函数的那个对象。" class="headerlink" title="随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是this指的是，调用函数的那个对象。"></a>随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是this指的是，调用函数的那个对象。</h3><h3 id="下面分四种情况，详细讨论this的用法。"><a href="#下面分四种情况，详细讨论this的用法。" class="headerlink" title="下面分四种情况，详细讨论this的用法。"></a>下面分四种情况，详细讨论this的用法。</h3><h2 id="情况一：纯粹的函数调用"><a href="#情况一：纯粹的函数调用" class="headerlink" title="情况一：纯粹的函数调用"></a>情况一：纯粹的函数调用</h2><h3 id="这是函数的最通常用法，属于全局性调用，因此this就代表全局对象Global。"><a href="#这是函数的最通常用法，属于全局性调用，因此this就代表全局对象Global。" class="headerlink" title="这是函数的最通常用法，属于全局性调用，因此this就代表全局对象Global。"></a>这是函数的最通常用法，属于全局性调用，因此this就代表全局对象Global。</h3><h3 id="请看下面这段代码，它的运行结果是1"><a href="#请看下面这段代码，它的运行结果是1" class="headerlink" title="请看下面这段代码，它的运行结果是1"></a>请看下面这段代码，它的运行结果是1</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  　<span class="keyword">this</span>.x = <span class="number">1</span>;</div><div class="line">   alert(<span class="keyword">this</span>.x);</div><div class="line">   &#125;</div><div class="line">test(); <span class="comment">// 1</span></div></pre></td></tr></table></figure>
-<h3 id="为了证明this就是全局对象，我对代码做一些改变："><a href="#为了证明this就是全局对象，我对代码做一些改变：" class="headerlink" title="为了证明this就是全局对象，我对代码做一些改变："></a>为了证明this就是全局对象，我对代码做一些改变：</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">   <span class="keyword">var</span> x = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  alert(<span class="keyword">this</span>.x);</div><div class="line">  &#125;</div><div class="line">test(); <span class="comment">// 1   </span></div></pre></td></tr></table></figure>　　<br>### 运行结果还是1。再变一下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.x = <span class="number">0</span>;</div><div class="line">   &#125;</div><div class="line">test();</div><div class="line">alert(x); <span class="comment">//0</span></div></pre></td></tr></table></figure>
-<h2 id="情况二：作为对象方法的调用"><a href="#情况二：作为对象方法的调用" class="headerlink" title="情况二：作为对象方法的调用"></a>情况二：作为对象方法的调用</h2><h3 id="函数还可以作为某个对象的方法调用，这时this就指这个上级对象。"><a href="#函数还可以作为某个对象的方法调用，这时this就指这个上级对象。" class="headerlink" title="函数还可以作为某个对象的方法调用，这时this就指这个上级对象。"></a>函数还可以作为某个对象的方法调用，这时this就指这个上级对象。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  alert(<span class="keyword">this</span>.x);</div><div class="line">   &#125;</div><div class="line"><span class="keyword">var</span> o = &#123;&#125;;</div><div class="line">o.x = <span class="number">1</span>;</div><div class="line">o.m = test;</div><div class="line">o.m(); <span class="comment">// 1</span></div></pre></td></tr></table></figure>
-<h2 id="情况三-作为构造函数调用"><a href="#情况三-作为构造函数调用" class="headerlink" title="情况三 作为构造函数调用"></a>情况三 作为构造函数调用</h2><h3 id="所谓构造函数，就是通过这个函数生成一个新对象（object）。这时，this就指这个新对象。"><a href="#所谓构造函数，就是通过这个函数生成一个新对象（object）。这时，this就指这个新对象。" class="headerlink" title="所谓构造函数，就是通过这个函数生成一个新对象（object）。这时，this就指这个新对象。"></a>所谓构造函数，就是通过这个函数生成一个新对象（object）。这时，this就指这个新对象。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   <span class="keyword">this</span>.x = <span class="number">1</span>;</div><div class="line">   &#125;</div><div class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> test();</div><div class="line">alert(o.x); <span class="comment">// 1</span></div></pre></td></tr></table></figure>
-<h3 id="运行结果为1。为了表明这时this不是全局对象，我对代码做一些改变："><a href="#运行结果为1。为了表明这时this不是全局对象，我对代码做一些改变：" class="headerlink" title="运行结果为1。为了表明这时this不是全局对象，我对代码做一些改变："></a>运行结果为1。为了表明这时this不是全局对象，我对代码做一些改变：</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="number">2</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.x = <span class="number">1</span>;</div><div class="line">   &#125;</div><div class="line"> <span class="keyword">var</span> o = <span class="keyword">new</span> test();</div><div class="line">  alert(x); <span class="comment">//2</span></div></pre></td></tr></table></figure>
-<h3 id="运行结果为2，表明全局变量x的值根本没变。"><a href="#运行结果为2，表明全局变量x的值根本没变。" class="headerlink" title="运行结果为2，表明全局变量x的值根本没变。"></a>运行结果为2，表明全局变量x的值根本没变。</h3><h2 id="情况四-apply调用"><a href="#情况四-apply调用" class="headerlink" title="情况四 apply调用"></a>情况四 apply调用</h2><h3 id="apply-是函数对象的一个方法，它的作用是改变函数的调用对象，它的第一个参数就表示改变后的调用这个函数的对象。因此，this指的就是这第一个参数。"><a href="#apply-是函数对象的一个方法，它的作用是改变函数的调用对象，它的第一个参数就表示改变后的调用这个函数的对象。因此，this指的就是这第一个参数。" class="headerlink" title="apply()是函数对象的一个方法，它的作用是改变函数的调用对象，它的第一个参数就表示改变后的调用这个函数的对象。因此，this指的就是这第一个参数。"></a>apply()是函数对象的一个方法，它的作用是改变函数的调用对象，它的第一个参数就表示改变后的调用这个函数的对象。因此，this指的就是这第一个参数。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">var</span> x = <span class="number">0</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   　alert(<span class="keyword">this</span>.x);</div><div class="line">   &#125;</div><div class="line"><span class="keyword">var</span> o=&#123;&#125;;</div><div class="line">o.x = <span class="number">1</span>;</div><div class="line">o.m = test;</div><div class="line">o.m.apply(); <span class="comment">//0</span></div></pre></td></tr></table></figure>
-<h3 id="apply-的参数为空时，默认调用全局对象。因此，这时的运行结果为0，证明this指的是全局对象。"><a href="#apply-的参数为空时，默认调用全局对象。因此，这时的运行结果为0，证明this指的是全局对象。" class="headerlink" title="apply()的参数为空时，默认调用全局对象。因此，这时的运行结果为0，证明this指的是全局对象。"></a>apply()的参数为空时，默认调用全局对象。因此，这时的运行结果为0，证明this指的是全局对象。</h3><h3 id="如果把最后一行代码修改为"><a href="#如果把最后一行代码修改为" class="headerlink" title="如果把最后一行代码修改为"></a>如果把最后一行代码修改为</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">o.m.apply(o); <span class="comment">//1</span></div></pre></td></tr></table></figure>
-<h3 id="运行结果就变成了1，证明了这时this代表的是对象o。"><a href="#运行结果就变成了1，证明了这时this代表的是对象o。" class="headerlink" title="运行结果就变成了1，证明了这时this代表的是对象o。"></a>运行结果就变成了1，证明了这时this代表的是对象o。</h3>
-      
+        <div class="article-info info-on-right">
+          
+          
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/14/JavaScript/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-
-
-
-
-
-
-
   
   
+    </div></section>
+  
+
+    
 
 
           </div>
@@ -464,9 +211,9 @@ foreach ($dict as $item) {
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
+		isHome: false,
 		isPost: false,
-		isArchive: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
